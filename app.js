@@ -2,8 +2,6 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 app.get('/', (req,res) =>{
     res.sendFile(__dirname + '/client/index.html');
@@ -11,9 +9,11 @@ app.get('/', (req,res) =>{
 
 app.use('/client', express.static(__dirname + '/client'));
 
-server.listen(server_port, server_ip_address, listen);
+server.listen(process.env.PORT || 3000, listen);
 function listen() {
-    console.log( "Listening on " + server_ip_address + ", port " + server_port )
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Example app listening at http://' + host + ':' + port);
 }
 
 var players = [];
