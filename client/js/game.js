@@ -38,10 +38,7 @@ var game = {
     start: function(){
         this.init();
         this.load();
-        // this.run();
-        setInterval(()=>{
-            game.run();
-        },1000/60);
+        this.run();
     },
     init: function(){
         this.canvas = document.getElementById("mycanvas");
@@ -256,9 +253,9 @@ var game = {
         this.render();
         this.update();
 
-        // window.requestAnimationFrame(function(){
-        //     game.run();
-        // });
+        window.requestAnimationFrame(function(){
+            game.run();
+        });
     }
 };
 
