@@ -36,7 +36,7 @@ function Hands(id, x, y, mouseX, mouseY){
     this.mouseY = mouseY;
 }
 
-setInterval(heartbeat);
+setInterval(heartbeat,1000/60);
 
 function heartbeat(){
     io.sockets.emit('heartbeat', players, hand_s);

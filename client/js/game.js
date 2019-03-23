@@ -38,7 +38,10 @@ var game = {
     start: function(){
         this.init();
         this.load();
-        this.run();
+        // this.run();
+        setInterval(()=>{
+            game.run();
+        },1000/60);
     },
     init: function(){
         this.canvas = document.getElementById("mycanvas");
@@ -167,7 +170,6 @@ var game = {
                 radius: 140
             });
         }
-
         var data = {
             rock: this.rock,
             barrel: this.barrel,
@@ -176,6 +178,7 @@ var game = {
         };
 
         socket.emit('map_el',data);
+
         socket.on('map_update',function(map_el){
             game.rock = map_el.rock;
             game.barrel = map_el.barrel;
@@ -253,9 +256,9 @@ var game = {
         this.render();
         this.update();
 
-        window.requestAnimationFrame(function(){
-            game.run();
-        });
+        // window.requestAnimationFrame(function(){
+        //     game.run();
+        // });
     }
 };
 
